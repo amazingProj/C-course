@@ -7,7 +7,7 @@
 void toUpperCase(char *input){
     int i=0;
     while(input[i] != '\0'){if(input[i]>= 'a' && input[i] >= 'z')input[i]=input[i]-32;
-    ++i;}
+        ++i;}
 }
 
 
@@ -29,7 +29,7 @@ void rmInitSpaces(char *input)
     int i=0;
     bool alive = true;
     do{
-      ' ' == input[i] ? (shift(&input)): (alive=false);
+        ' ' == input[i] ? (shift(&input)): (alive=false);
         ++i;
     }while(alive);
 
@@ -48,7 +48,8 @@ int main() {
     do {
         printf("Enter a string. For exiting use 'q' or 'Q'");
 
-        scanf_s("%99[^\n]%*c", input,100);
+         scanf_s("%99%*c", input,100);
+
 
         rmInitSpaces(&input);
         if ((input[0] == 'q' || input[0] == 'Q') && input[1] == '\0')
