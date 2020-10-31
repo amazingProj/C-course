@@ -54,7 +54,8 @@ int main() {
         if ((input[0] == 'q' || input[0] == 'Q') && input[1] == '\0')
             alive = false;
         else
-            printf("%s\n", input);
+        {toUpperCase(&input);printf("%s\n", input);}
+
 
     } while (alive);
 
