@@ -11,9 +11,9 @@ void ToUpperCase(char *input);
 
 /**
  * @brief function deletes the first char from a string.
- * 
+ *
 *  @param input - a by reference string
- * 
+ *
 */
 void Shift(char *input);
 
@@ -31,21 +31,23 @@ void RemoveInitialSpaces(char *input);
  * the user use 'q' or 'Q' to exit.
  *
  */
-int main() {
+int main() 
+{
 /*
  *  stdin input
  */
     char input[100];
     bool alive = true;
 
-    do {
+    do
+    {
         printf("Enter a string.\n For exiting use 'q' or 'Q'");
 
         scanf("%s", input);
 
 
         RemoveInitialSpaces(&input);
-        if ((input[0] == 'q' || input[0] == 'Q') && input[1] == '\0')
+        if ( (input[0] == 'q' || input[0] == 'Q') && input[1] == '\0')
             alive = false;
         else
         {
@@ -58,29 +60,37 @@ int main() {
 
     return 0;
 }
+/******* implementation of functions ********/
 
-void Shift(char *input) {
+void Shift(char *input) 
+{
     int i = 0;
-    while (input[i] != '\0') {
+    while (input[i] != '\0') 
+    {
         input[i] = input[i + 1];
         ++i;
     }
 }
 
-void RemoveInitialSpaces(char *input) {
+void RemoveInitialSpaces(char *input) 
+{
     int i = 0;
     bool alive = true;
-    do {
+    do 
+    {
         ' ' == input[i] ? (Shift(&input)) : (alive = false);
         ++i;
     } while (alive);
 }
 
-void ToUpperCase(char *input) {
+void ToUpperCase(char *input) 
+{
     int i = 0;
 
-    while (input[i] != '\0') {
+    while (input[i] != '\0') 
+    {
         if (input[i] >= 'a' && input[i] <= 'z')
             input[i] = input[i] - 32;
         ++i;
     }
+}
