@@ -4,7 +4,7 @@
  * function deletes the first char from a string.
 *@param input - a by reference string
 */
-void shift(char *input){
+void Shift(char *input){
     int i=0;
     while(input[i] != '\0'){input[i]=input[i+1];++i;}
 }
@@ -13,7 +13,7 @@ void shift(char *input){
  * function deletes from given string the initial spaces.
  * *@param input - a by reference string
  */
-void rmInitSpaces(char *input)
+void RemoveInitialSpaces(char *input)
 {
     int i=0;
     bool alive = true;
