@@ -2,14 +2,6 @@
 #include<stdbool.h>
 
 /**
- * @brief function covert lower case letters to upper case
- *
- * @param input - a by reference string.
- *
- */
-void ToUpperCase(char *input);
-
-/**
  * @brief function deletes the first char from a string.
  * 
 *  @param input - a by reference string
