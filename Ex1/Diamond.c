@@ -67,9 +67,6 @@ bool DiamondOfAsterisks(const int number)
 
 bool IsNumberOdd(const int number)
 {
-   bool i = false;
-   if (number % 2 == 1)
-       i = true;
-   return i;
+    return (number % 2 == 1)? true : false;
 }
 
