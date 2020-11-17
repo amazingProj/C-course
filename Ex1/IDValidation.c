@@ -10,7 +10,7 @@
 bool IsValidId(char *id)
 {
     int var;
-    for (int i = 7;i > 0;i -= 2)
+    for (int i = 6;i > 0;i -= 2)
     {
         var = (id[i] - '0') * 2 ;
         if (var > 9)
