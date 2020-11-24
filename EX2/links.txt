@@ -11,3 +11,7 @@ i++ could potentially be slower than ++i, since the old value of i might need to
 
 
 Perhaps true: which of these two operations expresses more accurately what you are trying to accomplish.
+
+
+Explenation about eax ecx:
+https://stackoverflow.com/questions/58852308/what-s-the-difference-between-eax-ebx-ecx-in-assembly
