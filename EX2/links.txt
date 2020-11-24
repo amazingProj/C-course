@@ -1,0 +1,3 @@
+https://stackoverflow.com/questions/24853/c-what-is-the-difference-between-i-and-i
+
+https://stackoverflow.com/questions/24886/is-there-a-performance-difference-between-i-and-i-in-c
