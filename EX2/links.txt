@@ -1,3 +1,13 @@
 https://stackoverflow.com/questions/24853/c-what-is-the-difference-between-i-and-i
 
 https://stackoverflow.com/questions/24886/is-there-a-performance-difference-between-i-and-i-in-c
+
+++i is sometimes faster than, and is never slower than, i++
+For intrinsic types like int, it doesn't matter: ++i and i++ are the same speed. For class types like iterators or the previous FAQ's Number class, ++i very well might be faster than i++ since the latter might make a copy of the this object
+
+i++ could potentially be slower than ++i, since the old value of i might need to be saved for later use, but in practice all modern compilers will optimize this away.
+
+
+
+
+Perhaps true: which of these two operations expresses more accurately what you are trying to accomplish.
