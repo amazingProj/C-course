@@ -1,14 +1,17 @@
 #include <stdio.h>
 #include <stdbool.h>
-
+/**
+ * @brief checks if is not equal zero
+ * @return boolean value.
+ */
 bool IsNotEqualZero(int num)
 {
-   if (num == 0)
-   {
-       return false;
-   }
-   return true;
+   return num == 0 ? true : false;
 }
+/**
+ * @brief gets a number
+ * @return the input number
+ */
 int GetNumber()
 {
    int num;
@@ -77,11 +80,11 @@ int main()
                semiMaximum = num1;
            }
        }
-        
+
     printf("Enter a number");
     num1 = GetNumber();
-       
-    } 
+
+    }
     printf("second smallest : %d , second biggest : %d", semiMinimum, semiMinimum);
     return 0;
 }
