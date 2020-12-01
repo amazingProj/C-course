@@ -1,4 +1,5 @@
 #include <stdio.h>
+
 /**
  * @brief insertion sort algorithm
  * @param arr of array of integers
@@ -23,6 +24,7 @@ void Sort(int *arr[], int n)
         arr[j + 1] = key;
     }
 }
+
 /**
  * Checks the Sort function
  * @return 0 when finished
@@ -32,6 +34,6 @@ int main(void)
     int array[]={5,6,7,1,2,55,3,6,8};
     int size = sizeof array / sizeof *array;
     Sort(&array,size);
-    printf(" maximum %d, minimum %d ", *array, array[size]);
+    printf(" maximum %d, minimum %d ", array[size-1], *array);
     return 0;
 }
