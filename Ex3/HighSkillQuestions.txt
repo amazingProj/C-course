@@ -1,0 +1,8 @@
+/*
+ * Homework:
+ * 1. Why do we have so much space (12 bytes) between variables on the stack?
+ * 2. Why are stack addresses different on each run?
+ *
+ */
+ 
+https://stackoverflow.com/questions/59642108/when-will-the-memory-be-allocated-for-the-variables-at-declaration-or-at-initia
