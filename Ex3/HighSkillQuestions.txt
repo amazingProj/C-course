@@ -6,3 +6,5 @@
  */
  
 https://stackoverflow.com/questions/59642108/when-will-the-memory-be-allocated-for-the-variables-at-declaration-or-at-initia
+https://www.softwareverify.com/memory-bit-patterns.php
+https://stackoverflow.com/questions/12468194/how-to-read-the-debug-memory-window-in-visual-studio
