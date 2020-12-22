@@ -1,0 +1,32 @@
+#include <stdio.h>
+#include<stdbool.h>
+#include<string.h>
+
+/**
+  @param pre- the string we want to check who is begin with it
+  @param str - the full string
+  @return true if it is begim with
+*/
+
+bool startsWith(const char* pre, const char* str)
+{
+    int lenpre = strlen(pre),
+           lenstr = strlen(str);
+    return lenstr < lenpre ? false : memcmp(pre, str, lenpre) == 0;
+}
+
+/**
+   @brief prints all path variables
+   @param argc - the size of argv array
+   @param argv - arguments with the file
+   @param envp - enviroments variables
+*/
+int main(int argc, char *argv[], char * envp[])
+{
+    int i;
+    for (i = 0; envp[i] != NULL; i++)
+       if ( startsWith(argv[1],envp[i]))
+        printf("\n%s", envp[i]);
+    getchar();
+    return 0;
+}
