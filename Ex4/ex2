@@ -6,7 +6,7 @@
   @param str- a string
 */
 
-void function(char* string)
+void function(char *string)
 {
     char * token = strtok(string, " ");
    // loop through the string to extract all other tokens
