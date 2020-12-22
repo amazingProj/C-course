@@ -8,7 +8,7 @@
   @return true if it is begim with
 */
 
-bool startsWith(const char* pre, const char* str)
+bool startsWith(const char *pre, const char *str)
 {
     int lenpre = strlen(pre),
            lenstr = strlen(str);
@@ -21,7 +21,7 @@ bool startsWith(const char* pre, const char* str)
    @param argv - arguments with the file
    @param envp - enviroments variables
 */
-int main(int argc, char *argv[], char * envp[])
+int main(int argc, char *argv[], char *envp[])
 {
     int i;
     for (i = 0; envp[i] != NULL; i++)
