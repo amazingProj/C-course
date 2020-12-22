@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include <string.h>
+
+/*
+  printing words in reverse order
+  @param str- a string
+*/
+
+void function(char* string)
+{
+    char * token = strtok(string, " ");
+   // loop through the string to extract all other tokens
+   while( token != NULL ) 
+   {
+      printf( " %s\n", token ); //printing each token
+      token = strtok(NULL, " ");
+   }
+}
+
+/*
+ checks the fnction below
+*/
+
+int main() 
+{
+   char string[50] = "Hello! We are learning about strtok";
+   // Extract the first token
+   function(string);
+   
+   return 0;
+}
