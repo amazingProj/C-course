@@ -1,0 +1,138 @@
+#include <stdio.h>
+#include <string.h>
+#define n 4
+
+typedef struct Dod_s
+{
+    char* name;
+    int kg;
+} Dog;
+
+/**
+ *        prints an array of dogs
+ * @param arr - an array of dogs.
+ */
+void PrintDogs(Dog* arr)
+{
+    // prints the array
+    for(int i = 0; i < n; ++i)
+    {
+        printf("%s %d\n", arr[i].name, arr[i].kg);
+    }
+}
+
+/**
+ *        assumption: descent lexicographic order: Z - A
+ *        a function that sorts by name then prints
+ * @param arr - an array of Dogs
+ */
+void SortDogByName(Dog* arr)
+{
+    int minIndex = 0;
+    char minStr[20];
+    Dog dog;
+
+    // selection sort
+    for(int i = 0; i < n - 1; ++i)
+    {
+        minIndex = i;
+        strcpy_s(minStr, sizeof minStr, arr[i].name);
+
+        for(int j = i + 1; j < n; ++j)
+        {
+            if (strcmp(minStr, arr[j].name) )
+            {
+                strcpy_s(minStr, sizeof minStr, arr[j].name);
+                minIndex = j;
+            }
+        }
+
+        //swap the minimum and current
+        dog = arr[minIndex];
+        arr[minIndex] = arr[i];
+        arr[i] = dog;
+
+    }
+
+    // prints the array
+    for(int i = 0; i < n; ++i)
+    {
+        printf("%s %d\n", arr[i].name, arr[i].kg);
+    }
+
+}
+
+/**
+ *        assumption: smallest to biggest
+ *        a function that sort by k.g.
+ * @param arr - an array of dogs
+ */
+void SortDogByKg(Dog* arr)
+{
+    int minIndex = 0;
+    Dog dog;
+
+    // selection sort: O(n^2) run time
+    for(int i = 0; i < n; ++i)
+    {
+
+        minIndex = i;
+        for(int j = i+1; j < n; ++j)
+        {
+            if (arr[j].kg < arr[minIndex].kg)
+            {
+                minIndex = j;
+            }
+        }
+
+
+        //swap the former and current
+        dog = arr[minIndex];
+        arr[minIndex] = arr[i];
+        arr[i] = dog;
+
+    }
+
+    // prints the array
+    for(int i = 0; i < n; ++i)
+    {
+        printf("%s %d\n", arr[i].name, arr[i].kg);
+    }
+
+
+
+}
+
+/**
+ *         checks the functions below
+ * @return 0 when terminated
+ */
+int main()
+{
+
+    const char* name[] =
+            {
+                    "Chivavha",
+                    "Bulldog",
+                    "Lavrador",
+                    "Zebra",
+            };
+
+    int array[n] = {3, 1, 2, 5};
+    Dog dogs[n];
+
+    for(int i = 0; i < n; ++i)
+    {
+
+        dogs[i].name = name[i];
+        dogs[i].kg = array[i];
+
+
+    }
+
+    //SortDogByName(dogs);
+    SortDogByKg(dogs);
+
+    printf("Finish!\n");
+    return 0;
+}
