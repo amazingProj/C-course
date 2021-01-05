@@ -39,31 +39,86 @@ float GetNumber()
  */
 int main()
 {
+    ComplexNumber cmp3;
+    cmp3.realNumber = 0.0;
+    cmp3.img = 0.0;
+    int number2 = 0;
+    ComplexNumber cmp2;
     ComplexNumber cmp;
-    cmp.realNumber = 8.12;
-    cmp.img = -9;
-    PrintComplexNumber(cmp);
+    int formerIndex;
+    float number;
     printf("Enter number type: put: real or complex!\n");
     char* type;
     scanf("%s", type);
     if (type == "real")
     {
-        float number = GetNumber();
+        number = GetNumber();
+        formerIndex = 0;
     }
     if (type == "complex")
     {
+        printf("Enter real number");
+        cmp.realNumber = GetNumber();
+        printf("Enter image field");
+        cmp.img = GetNumber();
+        formerIndex = 1;
 
     }
 
+    
+    printf("Enter operator: +, -, *, /, any other chars \n");
     int ext = 0;
     char operator;
-    scanf("%c", operator);
-    printf("Enter operator: +, -, *, / any other chars t\n");
+    operator = getchar();
+
     while (ext == 0)
     {
         switch (operator)
         {
         case '+':
+        printf("Enter number type: put: real or complex!/n");
+        char* type;
+        scanf("%s", type);
+        if (type == "real")
+        {
+        number2 = GetNumber();
+        formerIndex = 0;
+        if (formerIndex == 1)
+        {
+            cmp3.realNumber += cmp.realNumber;
+            cmp3.img += cmp.img;
+            PrintComplexNumber(cmp3);
+        }
+        else
+        {
+            number2 += number;
+            printf("%d", number2);
+        }
+        }
+        if (type == "complex")
+        {
+        printf("Enter real field");
+        cmp2.realNumber = GetNumber();
+        printf("Enter image field");
+        cmp2.img = GetNumber();
+        
+        if (formerIndex == 1)
+        {
+            cmp3.realNumber += cmp2.realNumber;
+            cmp3.img += cmp2.img;
+            PrintComplexNumber(cmp3);
+        }
+        else
+        {
+            cmp2.realNumber += number;
+            PrintComplexNumber(cmp2);
+        }
+        
+
+        }
+
+        
+    
             break;
         case '*':
             break;
