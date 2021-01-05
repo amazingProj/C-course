@@ -1,0 +1,87 @@
+#include <stdio.h>
+typedef struct ComplexNumber_S
+{
+    float realNumber;
+    float img;
+} ComplexNumber;
+
+
+void PrintComplexNumber(ComplexNumber num)
+{
+    if (num.img > 0.0)
+    {
+         printf("%.2f + %.2fi",num.realNumber,num.img);
+    }
+   else
+   {
+        printf("%.2f  %.2fi",num.realNumber,num.img);
+   }
+}
+
+/**
+ * @brief gets a number
+ * @return the input number
+ */
+float GetNumber()
+{
+   float num;
+   while (scanf("%f", &num) != 1)
+   {
+      while (getchar() != '\n');
+      printf ("Try again: ");
+   }
+   return num;
+}
+
+/**
+ *         calculator of complex and real numbers
+ * @return 0 - when terminates
+ */
+int main()
+{
+    ComplexNumber cmp;
+    cmp.realNumber = 8.12;
+    cmp.img = -9;
+    PrintComplexNumber(cmp);
+    printf("Enter number type: put: real or complex!\n");
+    char* type;
+    scanf("%s", type);
+    if (type == "real")
+    {
+        float number = GetNumber();
+    }
+    if (type == "complex")
+    {
+
+    }
+
+    int ext = 0;
+    char operator;
+    scanf("%c", operator);
+    printf("Enter operator: +, -, *, / any other chars t\n");
+    while (ext == 0)
+    {
+        switch (operator)
+        {
+        case '+':
+            break;
+        case '*':
+            break;
+        case '/':
+            break;
+        case '-':
+            break;
+        default:
+            ext = 1;
+            break;
+
+        }
+    }
+
+
+
+
+
+    printf("Hello, World!\n");
+    return 0;
+}
