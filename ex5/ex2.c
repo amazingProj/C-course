@@ -81,46 +81,86 @@ int main()
         scanf("%s", type);
         if (type == "real")
         {
-        number2 = GetNumber();
-        formerIndex = 0;
-        if (formerIndex == 1)
-        {
-            cmp3.realNumber += cmp.realNumber;
-            cmp3.img += cmp.img;
-            PrintComplexNumber(cmp3);
+            number2 = GetNumber();
+            formerIndex = 0;
+            if (formerIndex == 1)
+            {
+                cmp3.realNumber += cmp.realNumber;
+                cmp3.img += cmp.img;
+                PrintComplexNumber(cmp3);
+            }
+            else
+            {
+                number2 += number;
+                printf("%d", number2);
+            }
         }
-        else
-        {
-            number2 += number;
-            printf("%d", number2);
-        }
-        }
+        
         if (type == "complex")
         {
-        printf("Enter real field");
-        cmp2.realNumber = GetNumber();
-        printf("Enter image field");
-        cmp2.img = GetNumber();
+            printf("Enter real field");
+            cmp2.realNumber = GetNumber();
+            printf("Enter image field");
+            cmp2.img = GetNumber();
         
-        if (formerIndex == 1)
-        {
-            cmp3.realNumber += cmp2.realNumber;
-            cmp3.img += cmp2.img;
-            PrintComplexNumber(cmp3);
-        }
-        else
-        {
-            cmp2.realNumber += number;
-            PrintComplexNumber(cmp2);
-        }
+            if (formerIndex == 1)
+            {
+                cmp3.realNumber += cmp2.realNumber;
+                cmp3.img += cmp2.img;
+                PrintComplexNumber(cmp3);
+            }
+            else
+            {
+                cmp2.realNumber += number;
+                PrintComplexNumber(cmp2);
+            }
         
 
         }
 
-        
-    
             break;
         case '*':
+        printf("Enter number type: put: real or complex!/n");
+        char* type;
+        scanf("%s", type);
+        if (type == "real")
+        {
+            number2 = GetNumber();
+            formerIndex = 0;
+            if (formerIndex == 1)
+            {
+                cmp3.realNumber += cmp.realNumber;
+                cmp3.img += cmp.img;
+                PrintComplexNumber(cmp3);
+            }
+            else
+            {
+                number2 += number;
+                printf("%d", number2);
+            }
+        }
+        
+        if (type == "complex")
+        {
+            printf("Enter real field");
+            cmp2.realNumber = GetNumber();
+            printf("Enter image field");
+            cmp2.img = GetNumber();
+        
+            if (formerIndex == 1)
+            {
+                cmp3.realNumber += cmp2.realNumber;
+                cmp3.img += cmp2.img;
+                PrintComplexNumber(cmp3);
+            }
+            else
+            {
+                cmp2.realNumber += number;
+                PrintComplexNumber(cmp2);
+            }
+        
+
+        }
             break;
         case '/':
             break;
@@ -139,4 +179,5 @@ int main()
 
     printf("Hello, World!\n");
     return 0;
+}
 }
