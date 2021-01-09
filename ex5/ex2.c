@@ -56,6 +56,7 @@ ComplexNumber GettingComplexNumber(char *type)
 	result.img = 0.0;
 	if (type == "real")
 	{
+		printf("Enter a number\n");
 		result.realNumber = GetNumber();
 		result.img = 0.0;
 	}
