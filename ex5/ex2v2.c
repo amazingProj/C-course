@@ -5,11 +5,13 @@
 
 #define STRING_SIZE 15
 
+bool isReal;
+
 typedef union ComplexNumber_S
 {
 	float complex[2];
 	float real;
-	bool isReal;
+
 } ComplexNumber;
 
 /**
@@ -67,9 +69,9 @@ ComplexNumber GettingComplexNumber(char* type)
 	{
 		printf("Enter a real number: \n");
 		result.real = GetNumber();
-		if (!result.isReal)
+		if (!isReal)
 		{
-			result.isReal = true;
+			isReal = true;
 		}
 		
 	}
@@ -80,7 +82,7 @@ ComplexNumber GettingComplexNumber(char* type)
 		result.complex[0] = GetNumber();
 		printf("Enter a real number for the imaginary part: ");
 		result.complex[1] = GetNumber();
-		result.isReal = false;
+		isReal = false;
 
 	}
 	getchar(); // since you are reading a char as operator you need to catch the '\n' here also
@@ -154,7 +156,7 @@ ComplexNumber OperatorPlus(ComplexNumber num1, ComplexNumber num2)
 
 void PrintComplexNumber(ComplexNumber num)
 {
-	if (num.isReal)
+	if (isReal)
 	{
 		printf("%.2f\n", num.real);
 	}
