@@ -90,7 +90,7 @@ void SortDogByName(Dog* arr)
     // prints the array
     for(int i = 0; i < n; ++i)
     {
-        printf("%s %d\n", arr[i].name, arr[i].kg);
+        printf("%9s %7d\n", arr[i].name, arr[i].kg);
     }
 
 }
@@ -129,7 +129,7 @@ void SortDogByKg(Dog* arr)
     // prints the array
     for(int i = 0; i < n; ++i)
     {
-        printf("%s %d\n", arr[i].name, arr[i].kg);
+        printf("%9s %7d\n", arr[i].name, arr[i].kg);
     }
 
 
@@ -163,6 +163,8 @@ int main()
 
 
     }
+    
+    printf("%9s %7d\n", "Name", "Kilogram");
 
     SortDogByName(dogs);
     printf("\n");
