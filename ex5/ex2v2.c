@@ -215,5 +215,6 @@ int main()
 	}
 
 	PrintComplexNumber(num1);
+	free(type);
 	return 0;
 }
