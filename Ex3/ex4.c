@@ -1,16 +1,7 @@
 #include <stdio.h>
 
-// contains later all fibonacci number untill 100
-int array[100];
-
-/**
- *  @param  index - the place of the fibonacci number
- *  @return the number in the n - place.
- */
-int FibonacciNPlace(int index)
-{
-    return array[index];
-}
+// later in code: contains all fibonacci number untill 100
+int fibonacci[100];
 
 /**
  * @brief  fibonacci numbers - //0,1,1,2,3,5
@@ -18,30 +9,31 @@ int FibonacciNPlace(int index)
  * @param  n - the series index. 
  * @return n th - number.
  */
-int Fibonacci(int n)
+int FibonacciNPlace(int n)
 {
-    int array[3] = {0,0,1};
-    for (int i = 0; i < n; ++i)
+    if (n > 100)
     {
-        array[0] = array[1] + array[2];
-        array[1] = array[0];
+        return 0;
     }
-    return array[0];
+    
+    return fibonacci[n-1];
 }
 
 /**
- * checks the function and initialize the array.
+ * Checks the FibonacciNPlace function
+ * @return 0 when finished
  */
-int main()
+int main(void)
 {
+    int array[3] = {0,0,1};
     for (int i = 0; i < 100; ++i)
     {
-        array[i] = Fibonacci(i);
+        array[0] = array[2];
+        array[2] = array[1] + array[2];
+        array[1] = array[0];
+        fibonacci[i] = array[0];
     }
-
     
-    printf(" %d ", FibonacciNPlace(5));
     printf(" %d ", FibonacciNPlace(17));
-
     return 0;
 }
