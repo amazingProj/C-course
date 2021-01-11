@@ -11,7 +11,8 @@ int FibonacciNPlace(int n)
     int array[3] = {0,0,1};
     for (int i = 0; i < n; ++i)
     {
-        array[0] = array[1] + array[2];
+        array[0] = array[2];
+        array[2] = array[1] + array[2];
         array[1] = array[0];
     }
     return array[0];
@@ -23,6 +24,6 @@ int FibonacciNPlace(int n)
  */
 int main(void)
 {
-    printf(" %d ", FibonacciNPlace(5));
+    printf(" %d ", FibonacciNPlace(17));
     return 0;
 }
