@@ -7,7 +7,7 @@
 
 bool isReal;
 
-typedef union ComplexNumber_S
+typedef union ComplexNumber_t
 {
 	float complex[2];
 	float real;
@@ -46,9 +46,9 @@ char GettingOperator()
 *   Getting a string, asks for real or complex
 *   @return string
 */
-char* GettingType()
+char * GettingType()
 {
-	char* type = (char*)malloc(sizeof(*type) * STRING_SIZE);;
+	char *type = (char*)malloc(sizeof(*type) * STRING_SIZE);;
 	printf("Enter number type: put: real or complex!\nYour choice: ");
 	fgets(type, STRING_SIZE, stdin);
 	return type;
@@ -180,7 +180,7 @@ void PrintComplexNumber(ComplexNumber num)
 */
 int main()
 {
-	char* type;
+	char *type;
 	type = GettingType();
 	ComplexNumber num1 = GettingComplexNumber(type);
 
