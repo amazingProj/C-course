@@ -2,7 +2,7 @@
 #include <string.h>
 #define n 5
 
-typedef struct Dod_s
+typedef struct Dod_t
 {
     char* name;
     int kg;
