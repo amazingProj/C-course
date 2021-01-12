@@ -1,31 +1,38 @@
-#include<stdio.h>
-#include <string.h>
+##include <stdio.h>
+#include <stdbool.h>
 
-/*
-  printing words in reverse order
-  @param str- a string
+/**
+*  prints string words in reverse order.
+*  @param  str - a string
+*   
 */
-
-void function(char *string)
+void PrintReversed(char str[])
 {
-    char * token = strtok(string, " ");
-   // loop through the string to extract all other tokens
-   while( token != NULL ) 
-   {
-      printf( " %s\n", token ); //printing each token
-      token = strtok(NULL, " ");
-   }
+	int len = strlen(str);
+
+	for (int i = len; i >= 0; --i)
+	{
+		if (str[i] == ' ')
+		{
+			str[i] = '\0';
+			printf("%s ", &(str[i]) + 1);
+		}
+
+		
+	}
+
+	//prints the last variable.
+	printf("%s", str);
 }
 
-/*
- checks the fnction below
+/**
+*
+*  Checks the function PrintReversed
+*  @return 0 - when terminates.
 */
-
-int main() 
+int main()
 {
-   char string[50] = "Hello! We are learning about strtok";
-   // Extract the first token
-   function(string);
-   
-   return 0;
+	char str[] = "My name is Assaf";
+	PrintReversed(str);
+	return 0;
 }
