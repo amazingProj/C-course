@@ -58,7 +58,7 @@ int main()
     
     int retCode = ErrorCodeToString(errorCode, &msg);
     
-    printf("Function returned %s (error code %d\n",
+    printf("Function returned %s (error code %d)\n",
     msg, errorCode);
 
     return 0;
