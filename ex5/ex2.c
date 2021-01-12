@@ -4,7 +4,7 @@
 
 #define STRING_SIZE 15
 
-typedef struct ComplexNumber_S
+typedef struct ComplexNumber_t
 {
 	float realNumber;
 	float img;
@@ -42,9 +42,9 @@ char GettingOperator()
 *   Getting a string, asks for real or complex
 *   @return string
 */
-char* GettingType()
+char * GettingType()
 {
-	char* type = (char*)malloc(sizeof(*type) * STRING_SIZE);;
+	char *type = (char*)malloc(sizeof(*type) * STRING_SIZE);;
 	printf("Enter number type: put: real or complex!\nYour choice: ");
 	fgets(type, STRING_SIZE, stdin);
 	return type;
@@ -162,7 +162,7 @@ void PrintComplexNumber(ComplexNumber num)
 */
 int main()
 {
-	char* type;
+	char *type;
 	type = GettingType();
 	ComplexNumber num1 = GettingComplexNumber(type);
 
