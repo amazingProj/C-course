@@ -1,5 +1,5 @@
 # JctEmbeddedC5781
 
 
-Hello from embedded c
+Homework in course that I had learned.
 
