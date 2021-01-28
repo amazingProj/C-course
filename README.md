@@ -3,18 +3,18 @@
 
 Homework in course that I had learned.
 
-#Ex1
+# Ex1
 
 includes basics exercises in C.
 
-#Ex2
+# Ex2
 
-#Ex3
+# Ex3
 
-#Ex4
+# Ex4
 
-#Ex5
+# Ex5
 
-#Ex6
+# Ex6
 
-#Ex7
+# Ex7
