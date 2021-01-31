@@ -46,3 +46,5 @@ In main function prints the game until N - a given number.
 # Example exam
 
 Making fibonacci as a lazy evolution.
+
+# Stack
