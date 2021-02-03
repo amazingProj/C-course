@@ -9,15 +9,15 @@
 //#define n 2
 
 
-void PrintMatrix(int **array, int m, int n)
+void PrintMatrix(int ***array, int m, int n)
 {
     for (int i = 0; i < m; ++i)
     {
         for (int j = 0; j < n; ++j)
         {
-            printf("%d ", arrray[i][j]);
+            printf("%d ", *(array[i][j]));
         }
-        print("\n");
+        printf("\n");
     }
 }
 
@@ -65,7 +65,7 @@ int main(void)
     //int **p;
     //arr = &p;
     arr = (TransportedMatrix(matrix, m, n));
-    //PrintMatrix(*(array)
+    PrintMatrix(&arr, m, n);
 
     return 0;
 }
