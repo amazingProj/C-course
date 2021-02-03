@@ -25,6 +25,8 @@ Learning Disassembley
 
 exercise strings in C.
 
+practice: argv, argc and envp.
+
 # Ex5
 
 learning about structs and unions in C and exercise this topics.
