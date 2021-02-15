@@ -19,7 +19,7 @@ List* CreateList()
 	list->root->prev = (PNode)(malloc(sizeof(Node)));
 	list->root->prev = NULL;
 	list->root->next = NULL;
-	list->sizeOfList = 1;
+	list->sizeOfList = 0;
 	++numberOfLists;
 	return list;
 }
@@ -85,8 +85,9 @@ Node* Insert(List* list, ListDataType value, size_t index)
 
 	//for insert first time due to creating uninitialized node
 	//when creating the list
-	if (index == 0 && list->root->value == NULL)
+	if (list->sizeOfList == 0)
 	{
+		++(list->sizeOfList);
 		return InitRoot(list, value);
 	}
 
@@ -96,6 +97,13 @@ Node* Insert(List* list, ListDataType value, size_t index)
 	newNode->prev->value = iterator->value;
 
 	newNode->next = (PNode)(malloc(sizeof(Node)));
+	if (index == 0)
+	{
+		list->root = newNode;
+		newNode->next = iterator;
+		iterator->prev = newNode;
+		return newNode;
+	}
 	if (iterator->next != NULL)
 	{
 		newNode->next = iterator->next;
