@@ -1,33 +1,29 @@
-typedef int ListDataType;
+#pragma once
+#include "LinkedListUtils.h"
+#include "Utils.h"
 
-typedef struct Node_t Node;
+List * CreateList();
 
-typedef struct List_t List;
+void FreeList(List* list);
 
-List *CreateList();
+size_t GetListSize(List* list);
 
-void FreeList(List *list);
+Node * GetListHead(List* list);
 
-size_t GetListSize(List *list);
+ListDataType GetValue(List *list);
 
-Node *GetListHead(List *list);
+Node * Insert(List *list, T value, ListDataType newValue, size_t index);
 
-Node *GetNextNode(Node *currentNode);
+Node * PushFront(List* list, Node* after, ListDataType newValue);
 
-ListDataType GetValue(Node *node);
+Node* PushBack(List* list, Node* after, ListDataType newValue);
 
-Node *Insert(Node *after, ListDataType newValue);
+Node * PopFront(List* list);
 
-Node *PushFront(List *list, , ListDataType newValue);
+Node * PopBack(List* list);
 
-Node *PushBack(List *list, , ListDataType newValue);
+void DeleteNodeFromList(List* list, size_t index);
 
-ListDataType PopFront(List *list);
+Node * DeleteValue(List* list, size_t index);
 
-ListDataType PopBack(List *list);
-
-void DeleteNode(List *list, Node * target);
-
-Node *DeleteValue(List *list, , ListDataType value);
-
-Node *Find(List *list, ListDataType value);
+Node * Find(List* list, T value);
