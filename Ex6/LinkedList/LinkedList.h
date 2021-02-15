@@ -10,13 +10,11 @@ size_t GetListSize(List* list);
 
 Node * GetListHead(List* list);
 
-ListDataType GetValue(List *list);
+Node * Insert(List *list, ListDataType value, size_t index);
 
-Node * Insert(List *list, T value, ListDataType newValue, size_t index);
+Node * PushFront(List* list, ListDataType newValue);
 
-Node * PushFront(List* list, Node* after, ListDataType newValue);
-
-Node* PushBack(List* list, Node* after, ListDataType newValue);
+Node* PushBack(List* list, ListDataType newValue);
 
 Node * PopFront(List* list);
 
@@ -26,4 +24,4 @@ void DeleteNodeFromList(List* list, size_t index);
 
 Node * DeleteValue(List* list, size_t index);
 
-Node * Find(List* list, T value);
+Node * Find(List* list, ListDataType value);

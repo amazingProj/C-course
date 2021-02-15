@@ -1,9 +1,10 @@
 #include "LinkedList.h"
+#include<stdbool.h>
 
 /// <summary>
 /// Global variable for number of existed lists
 /// </summary>
-size_t numberOfLists = 0; 
+size_t numberOfLists = 0;
 
 List* CreateList()
 {
@@ -18,7 +19,6 @@ List* CreateList()
 	list->root->prev = (PNode)(malloc(sizeof(Node)));
 	list->root->prev = NULL;
 	list->root->next = NULL;
-	list->dataType = NULL;
 	list->sizeOfList = 1;
 	++numberOfLists;
 	return list;
@@ -30,7 +30,6 @@ void FreeList(List *list)
 	{
 		return;
 	}
-	free(list->dataType);
 	while (list->root->next != NULL)
 	{
 		free(list->root->value);
@@ -39,16 +38,16 @@ void FreeList(List *list)
 		free(list->root->next);
 	}
 	free(list->root);
-	free(list->dataType);
 	free(list->sizeOfList);
+	--numberOfLists;
 }
 
 size_t GetListSize(List *list)
 {
-	if (list->sizeOfList != NULL)
+	/*if (list->sizeOfList != NULL)
 	{
 		return list->sizeOfList;
-	}
+	}*/
 	PNode iterator = list->root;
 	size_t counter = 0;
 	while (iterator->next != NULL)
@@ -65,37 +64,36 @@ Node *GetListHead(List *list)
 }
 
 
-ListDataType GetValue(List *list)
-{
-	list->dataType;
-}
-
-Node* Insert(List* list, T value, ListDataType newValue, size_t index)
+Node* Insert(List* list, ListDataType value, size_t index)
 {
 	List* newList = list;
 	if (list == NULL)
 	{
-		 newList = CreateList();
+		newList = CreateList();
 	}
-	//if there is no data type
-	if (newList->dataType == NULL)
+	if (newList == NULL)
 	{
-		newList->dataType = newValue;
+		return NULL;
 	}
-	else {
-		if (newValue != newList->dataType)
-		{
-			printf("Error: list's typecode does not match the given code\n");
-			return NULL;
-		}
-	}
-		
+
 	PNode iterator = GetNodeInIndex(newList, index);
 
+	if (iterator == NULL)
+	{
+		return NULL;
+	}
+
+	//for insert first time due to creating uninitialized node
+	//when creating the list
+	if (index == 0 && list->root->value == NULL)
+	{
+		return InitRoot(list, value);
+	}
 
 	PNode newNode = (PNode)(malloc(sizeof(Node)));
 	newNode->value = value;
 	newNode->prev = iterator;
+	newNode->prev->value = iterator->value;
 
 	newNode->next = (PNode)(malloc(sizeof(Node)));
 	if (iterator->next != NULL)
@@ -106,29 +104,58 @@ Node* Insert(List* list, T value, ListDataType newValue, size_t index)
 	{
 		newNode->next = NULL;
 	}
-	
+
 	iterator->next = newNode;
+	++(list->sizeOfList);
 	return newNode;
 }
 
-Node* PushFront(List* list, Node* after, ListDataType newValue)
+Node* PushFront(List* list, ListDataType newValue)
 {
-	Insert(list, after, newValue, 0);
+	List *newList = list;
+	if (list == NULL)
+	{
+		newList = CreateList();
+	}
+	if (newList == NULL)
+	{
+		return NULL;
+	}
+	return Insert(list, newValue, 0);
 }
 
-Node* PushBack(List* list, Node* after, ListDataType newValue)
+Node* PushBack(List* list, ListDataType newValue)
 {
-	Insert(list, after, newValue, GetListSize(list));
+	List *newList = list;
+	if (list == NULL)
+	{
+		newList = CreateList();
+	}
+	if (newList == NULL)
+	{
+		return NULL;
+	}
+	return Insert(list, newValue, GetListSize(list));
 }
 
 Node * PopFront(List* list)
 {
+	if (list == NULL)
+	{
+		return NULL;
+	}
 	list->root = list->root->next;
+	list->root->value = list->root->next->value;
+	--(list->sizeOfList);
 	return list->root->prev;
 }
 
 Node* PopBack(List* list)
 {
+	if (list == NULL)
+	{
+		return NULL;
+	}
 	PNode iterator = list->root;
 	while (iterator->next != NULL)
 	{
@@ -140,32 +167,41 @@ Node* PopBack(List* list)
 
 void DeleteNodeFromList(List* list, size_t index)
 {
+	if (list == NULL)
+	{
+		return NULL;
+	}
 	PNode iterator = GetNodeInIndex(list, index);
 	iterator->prev->next = iterator->next;
-	iterator->next->prev = iterator->prev->next;
+	iterator->next->prev = iterator->prev;
 	DeleteNode(iterator);
 }
 
 Node* DeleteValue(List* list, size_t index)
 {
+	if (list == NULL)
+	{
+		return NULL;
+	}
 	PNode iterator = GetNodeInIndex(list, index);
 	iterator->value = NULL;
+	return iterator;
 }
 
-Node* Find(List* list, T value)
+Node* Find(List* list, ListDataType value)
 {
+	if (list == NULL)
+	{
+		return NULL;
+	}
 	PNode iterator = list->root;
 	while (iterator->next != NULL)
 	{
-		if (list->dataType )
+		if (iterator->value == value)
 		{
-			if (iterator->value == value)
-			{
-				return iterator;
-			}
-
+			return iterator;
 		}
-		
+
 		iterator = iterator->next;
 	}
 	printf("%s", "Error: value match did not found");

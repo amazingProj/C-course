@@ -4,7 +4,6 @@ void DeleteNode(PNode node)
 {
 	free(node->next);
 	free(node->prev);
-	free(node->value);
 }
 
 PNode GetNodeInIndex(List* list, size_t index)
@@ -14,15 +13,16 @@ PNode GetNodeInIndex(List* list, size_t index)
 	{
 		if (iterator->next == NULL)
 		{
-			printf("%s", "Error: there is no such index");
-			return;
+			printf("%s", "Error: there is no such index\n");
+			return NULL;
 		}
 		iterator = iterator->next;
 	}
 	return iterator;
 }
 
-void InitRoot(List* list, T value)
+PNode InitRoot(List* list, ListDataType value)
 {
 	list->root->value = value;
+	return list->root;
 }
