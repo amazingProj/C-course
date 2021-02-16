@@ -50,3 +50,7 @@ In main function prints the game until N - a given number.
 Making fibonacci as a lazy evolution.
 
 # Stack
+
+# Query
+
+https://developercommunity.visualstudio.com/content/problem/490299/c-formatting-problem-pointerreference-alignment-ig.html
