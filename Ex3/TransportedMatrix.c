@@ -5,67 +5,104 @@
 *******************************************************************************/
 
 #include <stdio.h>
-//#define m 3
-//#define n 2
 
+_Bool results[2] = { 1, 1 };
 
-void PrintMatrix(int ***array, int m, int n)
+void MatrixTypeByResults(int **array, int n)
 {
-    for (int i = 0; i < m; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            printf("%d ", *(array[i][j]));
-        }
-        printf("\n");
-    }
+	if (array == NULL)
+	{
+		return;
+	}
+
+	if (results[0])
+	{
+		printf("%23s", "The matrix is symetrix");
+		return;
+	}
+
+	if (results[1])
+	{
+		printf("%23s", "The matrix is skew symetrix");
+		return;
+	}
+
+	printf("%23s", "ordinary matrix");
 }
 
-int ** TransportedMatrix(int **array, int m, int n)
+void PrintMatrix(int **array, int m, int n)
 {
-    int **arr = malloc(m * sizeof(int *));
-    for (int i = 0; i < m; ++i)
-    {
-        arr[i] = malloc(n * sizeof(int));
-    }
-    for (int i =0; i < m; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            arr[i][j] = 0;
-        }
-    }
-    for (int i = 0; i < m; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            arr[i][j] = array[j][i];
-        }
-    }
-    return arr;
+	if (array == NULL)
+	{
+		return;
+	}
+
+	for (int i = 0; i < m; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			printf("%d ", array[i][j]);
+		}
+		printf("\n");
+	}
 }
+
+int ** TransportedMatrix(int **array, int n)
+{
+	int **arr = malloc(n * sizeof(int *));
+	for (int i = 0; i < n; ++i)
+	{
+		arr[i] = malloc(n * sizeof(int));
+	}
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			arr[i][j] = 0;
+		}
+	}
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			if (array[i][j] != array[j][i])
+			{
+				results[0] = 0;
+			}
+			if (i != j)
+			{
+				if (array[i][j] != -array[j][i])
+				{
+					results[1] = 0;
+				}
+			}
+
+			arr[i][j] = array[j][i];
+		}
+	}
+	return arr;
+}
+
 int main(void)
 {
-    int m = 3;
-    int n = 2;
-    int **matrix = malloc(m * sizeof(int *));
-    for (int i = 0; i < m; ++i)
-    {
-        matrix[i] = malloc(n * sizeof(int));
-    }
-    int array[3][2] = {{1,2},{3,4},{5,6}};
-    for (int i =0; i < m; ++i)
-    {
-        for (int j = 0; j < n; ++j)
-        {
-            matrix[i][j] = array[i][j];
-        }
-    }
-    int **arr;
-    //int **p;
-    //arr = &p;
-    arr = (TransportedMatrix(matrix, m, n));
-    PrintMatrix(&arr, m, n);
+	int n = 3;
+	int **matrix = malloc(n * sizeof(int *));
+	for (int i = 0; i < n; ++i)
+	{
+		matrix[i] = malloc(n * sizeof(int));
+	}
+	int array[3][3] = { { 1, -3, -5 },{ 3, 4, -6 },{ 5, 6, 8998 } };
+	for (int i = 0; i < n; ++i)
+	{
+		for (int j = 0; j < n; ++j)
+		{
+			matrix[i][j] = array[i][j];
+		}
+	}
+	int **arr;
+	arr = (TransportedMatrix(matrix, n));
+	PrintMatrix(arr, n, n);
+	MatrixTypeByResults(arr, n);
 
-    return 0;
+	return 0;
 }
