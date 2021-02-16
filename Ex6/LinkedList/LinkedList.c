@@ -1,6 +1,8 @@
 #include "LinkedList.h"
 #include<stdbool.h>
-
+/**
+  * @file LinkedList.h
+  */
 /// <summary>
 /// Global variable for number of existed lists
 /// </summary>
@@ -44,12 +46,15 @@ void FreeList(List *list)
 
 size_t GetListSize(List *list)
 {
-	/*if (list->sizeOfList != NULL)
+	// calculate even though there is an variable in list.
+	if (list == NULL)
 	{
-		return list->sizeOfList;
-	}*/
+		//error occured with list
+		return -1;
+	}
+
 	PNode iterator = list->root;
-	size_t counter = 0;
+	size_t counter = 1;
 	while (iterator->next != NULL)
 	{
 		iterator = iterator->next;
@@ -66,22 +71,11 @@ Node *GetListHead(List *list)
 
 Node* Insert(List* list, ListDataType value, size_t index)
 {
-	List* newList = list;
 	if (list == NULL)
 	{
-		newList = CreateList();
-	}
-	if (newList == NULL)
-	{
 		return NULL;
 	}
-
-	PNode iterator = GetNodeInIndex(newList, index);
-
-	if (iterator == NULL)
-	{
-		return NULL;
-	}
+	
 
 	//for insert first time due to creating uninitialized node
 	//when creating the list
@@ -91,59 +85,93 @@ Node* Insert(List* list, ListDataType value, size_t index)
 		return InitRoot(list, value);
 	}
 
+	
 	PNode newNode = (PNode)(malloc(sizeof(Node)));
-	newNode->value = value;
-	newNode->prev = iterator;
-	newNode->prev->value = iterator->value;
-
 	newNode->next = (PNode)(malloc(sizeof(Node)));
-	if (index == 0)
+	newNode->prev = (PNode)(malloc(sizeof(Node)));
+
+	if (index == 1)
 	{
+		newNode->value = value;
+
+		newNode->next = list->root;
+		newNode->next->prev = newNode;
+		newNode->prev = NULL;
+
 		list->root = newNode;
-		newNode->next = iterator;
-		iterator->prev = newNode;
+		++(list->sizeOfList);
 		return newNode;
 	}
-	if (iterator->next != NULL)
+
+	PNode iterator;
+
+	if ((list->sizeOfList + 1) == index)
 	{
-		newNode->next = iterator->next;
-	}
-	else
-	{
+		newNode->value = value;
+
+		// itertor will be the end
+		iterator = GetNodeInIndex(list, list->sizeOfList);
+	
+		iterator->next = newNode;
+
+		newNode->prev = iterator;
 		newNode->next = NULL;
+
+		++(list->sizeOfList);
+		return newNode;
 	}
 
+	if (list->sizeOfList == index)
+	{
+		iterator = GetNodeInIndex(list, list->sizeOfList);
+		newNode->value = value;
+
+		iterator->prev->next = newNode;
+
+		newNode->prev = iterator->prev;
+		newNode->next = iterator;
+
+		iterator->prev = newNode;
+		++(list->sizeOfList);
+		return newNode;
+	}
+
+	newNode->value = value;
+	 
+	// get the node in place.
+	iterator = GetNodeInIndex(list, index);
+	
+	if (iterator == NULL)
+	{
+		return NULL;
+	}
+	iterator->next->prev = newNode;
+	
+	newNode->next = iterator->next;
+
 	iterator->next = newNode;
+	newNode->prev = iterator;
+
 	++(list->sizeOfList);
 	return newNode;
 }
 
-Node* PushFront(List* list, ListDataType newValue)
+Node* PushFront(List* list, ListDataType value)
 {
-	List *newList = list;
 	if (list == NULL)
-	{
-		newList = CreateList();
-	}
-	if (newList == NULL)
 	{
 		return NULL;
 	}
-	return Insert(list, newValue, 0);
+	return Insert(list, value, 1);
 }
 
-Node* PushBack(List* list, ListDataType newValue)
+Node* PushBack(List* list, ListDataType value)
 {
-	List *newList = list;
 	if (list == NULL)
-	{
-		newList = CreateList();
-	}
-	if (newList == NULL)
 	{
 		return NULL;
 	}
-	return Insert(list, newValue, GetListSize(list));
+	return Insert(list, value, GetListSize(list) + 1);
 }
 
 Node * PopFront(List* list)
@@ -152,10 +180,14 @@ Node * PopFront(List* list)
 	{
 		return NULL;
 	}
+
+	PNode save = list->root;
+
 	list->root = list->root->next;
-	list->root->value = list->root->next->value;
+	list->root->prev = NULL;
+	
 	--(list->sizeOfList);
-	return list->root->prev;
+	return save;
 }
 
 Node* PopBack(List* list)
@@ -164,13 +196,18 @@ Node* PopBack(List* list)
 	{
 		return NULL;
 	}
+
 	PNode iterator = list->root;
 	while (iterator->next != NULL)
 	{
 		iterator = iterator->next;
 	}
+
+	PNode save = iterator;
+
 	iterator->prev->next = NULL;
-	return iterator;
+	--(list->sizeOfList);
+	return save;
 }
 
 void DeleteNodeFromList(List* list, size_t index)
@@ -179,10 +216,37 @@ void DeleteNodeFromList(List* list, size_t index)
 	{
 		return NULL;
 	}
-	PNode iterator = GetNodeInIndex(list, index);
+
+	if (index == 1)//root is deleted
+	{
+		list->root = list->root->next;
+		list->root->prev = NULL;
+
+		DeleteNode(list->root->prev);
+	}
+	PNode iterator;
+
+	if (index == list->sizeOfList)
+	{
+		iterator = GetNodeInIndex(list, list->sizeOfList);
+		iterator->prev->next = NULL;
+		
+		DeleteNode(iterator);
+	}
+
+	iterator = GetNodeInIndex(list, index);
+
+	// when index is bigger than list->sizeOfList
+	if (iterator == NULL)
+	{
+		return NULL;
+	}
+
 	iterator->prev->next = iterator->next;
 	iterator->next->prev = iterator->prev;
+
 	DeleteNode(iterator);
+	--(list->sizeOfList);
 }
 
 Node* DeleteValue(List* list, size_t index)
@@ -191,8 +255,16 @@ Node* DeleteValue(List* list, size_t index)
 	{
 		return NULL;
 	}
+
 	PNode iterator = GetNodeInIndex(list, index);
+
+	if (iterator == NULL)
+	{
+		return NULL;
+	}
+
 	iterator->value = NULL;
+	--(list->sizeOfList);
 	return iterator;
 }
 
@@ -202,16 +274,21 @@ Node* Find(List* list, ListDataType value)
 	{
 		return NULL;
 	}
-	PNode iterator = list->root;
-	while (iterator->next != NULL)
-	{
-		if (iterator->value == value)
-		{
-			return iterator;
-		}
 
+	PNode iterator = list->root;
+	for (size_t i = 0; i < list->sizeOfList; ++i)
+	{
+		if (iterator->value != NULL)
+		{
+			if (iterator->value == value)
+			{
+				return iterator;
+			}
+		}
+		
 		iterator = iterator->next;
 	}
+	
 	printf("%s", "Error: value match did not found");
 	return NULL;
 }
