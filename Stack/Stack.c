@@ -1,141 +1,85 @@
 #include "Stack.h"
 
-Stack * CreateStack()
+/**
+  * @file Stack.h
+  */
+Stack *CreateStack()
 {
-	Stack *stack;
-	/*stack.list = malloc(sizeof(Node));
-	stack.list->data = malloc(sizeof(Item));
-	stack.list->Next = malloc(sizeof(Node));
-	stack.root = malloc(sizeof(Node));
-	stack.root = NULL;
-	stack.list->data = NULL;
-	stack.list->Next = NULL;
-	stack.list = NULL;*/
+	Stack *stack = (Stack *)(malloc(sizeof(Stack)));
+	stack->list = CreateList();
+	if (stack->list == NULL)
+	{
+		return NULL;
+	}
 
-	stack = malloc(sizeof(Stack));
-	stack->list = malloc(sizeof(Node));
-	stack->list->data = malloc(sizeof(Item));
-	stack->list->Next = malloc(sizeof(Node));
-	stack->top = malloc(sizeof(Node));
-	stack->top = NULL;
-	/*
-	stack->list->data = NULL;
-	stack->list->Next = NULL;
-	stack->list = NULL;
-	*/
-	Stack *stk = stack;
+	stack->top = stack->list->root;
+
 	return stack;
 }
 
 void DeleteStack(Stack *stack)
 {
-	while (!StackGetLastError(stack))
+	if (stack == NULL)
 	{
-		PNode pNode = StackPop(stack);
-
-		// free a string, if it is.
-		if (pNode->data->typecode == 3)
-		{
-			free(pNode->data->type);
-		}
-		free(pNode->Next);
-		free(pNode->data);
+		return;
 	}
+
+	FreeList(stack->list);
+	DeleteNode(stack->top);
 	free(stack);
 }
 
-void StackPush(Stack * stack, PNode item)
+void StackPush(Stack *stack, PNode item)
 {
-	if (StackGetLastError(stack))
-	{
-		CreateStack(stack);
-	}
-	else
-	{
-		PNode oldTop = malloc(sizeof(Node));
-		oldTop = stack->list;
-		PNode p = oldTop->Next;
-		Item *item = p->data;
-		while (oldTop->Next != NULL)
-		{
-			oldTop = oldTop->Next;
-		}
-		oldTop->Next = item;
-	}
-
-	stack->top = item;
-}
-
-Node * StackPop(Stack * stack)
-{
-	if (StackGetLastError(stack))
+	if (stack == NULL)
 	{
 		return NULL;
 	}
-	else 
-	{
-		PNode current = stack->list;
-		while (current != NULL
-			&& current->Next != stack->top)
-		{
-			current = current->Next;
-		}
 
-		stack->top = current;
-		current->Next = NULL;
-	}
-
-	return stack->top;
+	PushFront(stack->list, item->value);
 }
 
-int StackGetLastError(Stack * stack)
+Node *StackPop(Stack *stack)
+{
+	if (stack == NULL)
+	{
+		return NULL;
+	}
+
+	return PopFront(stack->list);
+}
+
+int StackGetLastError(Stack *stack)
 {
 	return (stack->list == NULL);
 }
 
-size_t StackSize(Stack * stack)
+size_t StackSize(Stack *stack)
 {
-	int count = 0;
-	PNode current = stack->list;
-
-	while (current != NULL)
+	if (stack == NULL)
 	{
-		current = current->Next;
-		count++;
+		return -1;
 	}
 
-	return count;
+	return GetListSize(stack->list);
 }
 
-void StackPrint(Stack * stack)
+void StackPrint(Stack *stack)
 {
-	PNode current = stack->list;
-
-	while (current != NULL)
+	if (stack == NULL)
 	{
-		switch (current->data->typecode)
+		return;
+	}
+
+	printf("%13s  %10s \n", "Serial number", "Value");
+	PNode iterator = stack->list->root;
+	for (size_t i = 0; i < stack->list->sizeOfList; ++i)
+	{
+		if (iterator->value == NULL)
 		{
-		case 1:
-			printf("%10 %c \n", current->data->type->chr);
-			break;
-
-		case 2:
-			printf("%10 %d \n", current->data->type->number);
-			break;
-
-		case 3:
-			printf("%10 %s \n", current->data->type->str);
-			break;
-
-		case 4:
-			(current->data->type->bl) ? printf("%s", "TRUE") : printf("%s", "False");
-			printf("%10c \n", current->data->type);
-			break;
-
-		default:
-			break;
-
+			continue;
 		}
-		current = current->Next;
+		printf("%13d  %10d \n", i, iterator->value);
+		iterator = iterator->next;
 	}
 }
