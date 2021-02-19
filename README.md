@@ -3,7 +3,7 @@
 
 Homework in course that I had learned.
 
-Code was written according to teacher's coding guidelines and using doxygen.
+Code was written according to teacher's coding guidelines.
 
 # Ex1
 
