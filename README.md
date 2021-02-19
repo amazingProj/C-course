@@ -3,19 +3,16 @@
 
 Homework in course that I had learned.
 
-I was exposed to write according to teacher's coding guidelines and using doxygen.
-
-Know visual studio better and to read standards of C.
+Code was written according to teacher's coding guidelines and using doxygen.
 
 # Ex1
 
-includes basics exercises in C.
+basics exercises in C.
 
 # Ex2
 
 Taking a look at Disassembley of code.
 
-Learning Disassembley
 
 # Ex3
 
