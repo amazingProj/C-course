@@ -1,6 +1,5 @@
 # C projects
 
-
 Homework in course that I had learned.
 
 Code was written according to teacher's coding guidelines.
@@ -11,43 +10,21 @@ basics exercises in C.
 
 # Ex2
 
-Taking a look at Disassembley of code.
-
-
-# Ex3
-
- arrays and memory with visual studio
+Disassembley of for loop, and what is the disassembly of ++i and i++.
 
 # Ex4
-
-exercise strings in C.
 
 practice: argv, argc and envp.
 
 # Ex5
 
-learning about structs and unions in C and exercise this topics.
+ exercise structs and unions in C by doing a complex and real numbers calculator. 
 
 # Ex6
 
-Exercise pointers in C .
+Doing Memory dump - a code that print in Hex and binary forms what is in the meomry of given pointer and its size.
 
-# Ex7
+Making a linked list then testing it and making a program that gets unlimeted int until non numeric string.
 
-Unzip a directory with header file and object file.
+Afterwards making a stack and query implements by linked list.
 
-# BoomTrach
-
-Implements the game Boom-Trach 
-
-In main function prints the game until N - a given number.
-
-# Example exam
-
-Making fibonacci as a lazy evolution.
-
-# Stack
-
-# Query
-
-https://developercommunity.visualstudio.com/content/problem/490299/c-formatting-problem-pointerreference-alignment-ig.html
